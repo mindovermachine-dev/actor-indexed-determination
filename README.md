@@ -464,7 +464,7 @@ The dependency order is the reading order.
 |#|Document|Role|
 |-|-|-|
 |13|[`delivery`](core/13-delivery.md)|whether authored governance actually reaches the act|
-|14|[`indexed determination`](core/14-indexed-determination.md)|the full index, commitment levels, residual discretion, hypothesis set|
+|14|[`indexed determination`](core/14-indexed-determination.md)|the full index, commitment levels, residual discretion, hypothesis set, act address|
 
 Draft status is substantive: these documents are part of the working theory but have not yet been ratified as settled canon.
 

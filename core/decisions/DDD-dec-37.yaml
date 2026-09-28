@@ -1,0 +1,65 @@
+format: 1
+id: DDD-dec-37
+kind: decision
+statement: |
+  The act address ruling: the act address is filed as a projected claim (DDD-ground-06) — position on declared ground axes plus layer path, occupant excluded — for a pre-registered test whose independent case is the first independent application case, pre-registered in the projection's session records; its diachronic companions (time index, occurrence uniqueness, coincidence grain) file in the projection repository.
+principal: Emil
+made: 2026-09-27, act address session (interactive; arrival retroactive — see notes); filed 2026-09-28 at the act address landing session, on its GATE 1 rulings
+resolution: |
+  ## The question
+
+  Theory-layer work defined behaviour as recurring acts at the same coordinates under the same
+  relative ground, and left the coordinates [OPEN]. The practical method needed an answer,
+  because its first step indexes acts so decisions and actors can be anchored.
+
+  ## Candidates and rulings
+
+  - A (decision × ground requirements × arrangement) is retired: the arrangement contains the
+    producer, so it breaks cross-actor comparability by construction.
+  - C (DDD-frame-01's tuple minus the arrangement) is retired: the tuple indexes a determination
+    problem, not an act, so an act resolving k decisions would get k addresses.
+  - D (position on declared ground axes, extracted at the act-site; decisions anchored by
+    DDD-ground-01's applicability predicates; actors as occupants) is the candidate under test.
+  - Extended by Emil: a layer path through composite acts is part of the address (R-5), and a
+    causal time index sits beside it (R-4, filed in the projection repository).
+  - Every occurrence is unique; occurrences coincide on addresses; code reuse is a derivation
+    relation, not act identity (R-6, filed in the projection repository).
+
+  ## Corrections carried
+
+  C-1: "τ as pinning resolution" is withdrawn; core/04 (settled) makes pinning resolution
+  actor-side. C-2: candidate C's flaw above. Both are attributed to the proposing agent, which
+  reasoned from a project projection before fetching the repository.
+
+  ## Landing rulings (GATE 1, 2026-09-28)
+
+  - Falsifier limb 1 repaired: the governing set is computed from the address, the act's ground
+    readings and the predicates, without the verdict itself. The draft's limb read the address
+    and predicates alone, and temporal predicates, which DDD-ground-01's region admits, looked
+    able to fire it with the address kept free of time.
+    The reading/verdict-input line is flagged UNVERIFIED — Emil review.
+  - The declared-space limit is cited to DDD-ground-05 and DDD-ground-02.
+  - Rule 1: the address definition and the occupant exclusion stay joined.
+  - E-1 is accepted as a correction record: without the layer, the seam decision is
+    ambiguously anchored, not unanchored. The pre-registration is not edited.
+  - term:act-address is registered as a draft term, established by core/14 (the registry
+    requires a core document), without the bare alias "address".
+  - The independent case is named in this repository only as the first independent application
+    case; its identity lives in the projection's session records.
+basedOn:
+  - DDD-ground-01
+  - DDD-ground-02
+  - DDD-ground-05
+  - DDD-frame-01
+  - DDD-floor-02
+  - term:act
+notes: |
+  Session records: the projection repository's meta/sessions/2026-09-27-act-address/ (the
+  design session) and meta/sessions/2026-09-27-act-address-landing/ (the landing, with its
+  GATE 1 survey and rulings). The design session ran in chat with no committed arrival record;
+  that failure is recorded there (arrival-retroactive.md) on the DDD-dec-17 precedent. The
+  pre-registration was fixed and hashed before any case ran (SHA-256 ef34e3bc…f5eb), and that
+  hash is the discipline boundary for the test. It does not bound the design work.
+
+  basedOn gains DDD-ground-02 and DDD-ground-05 over the draft, for the declared-space citation
+  (GATE 1 ruling 3).

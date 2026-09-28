@@ -603,3 +603,12 @@ terms:
       > not about the arrangement. And it is not randomness: a deterministic arrangement can
       > carry substantial discretion across unfamiliar cases, a randomised one can be tightly
       > committed, and a zero-variance arrangement can be consistently wrong.
+  - id: term:act-address
+    term: act-address
+    aliases: [act address]
+    established_by: 14-indexed-determination.md
+    status: draft
+    canonical_md: |
+      > The **act address** — where an act occurrence sits: its position on declared ground axes and
+      > its layer path through the composite acts that contain it, read at the act-site. The occupant
+      > is not part of it, so the same address can be occupied by different actors.

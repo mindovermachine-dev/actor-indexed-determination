@@ -1,0 +1,64 @@
+format: 1
+id: DDD-ground-06
+kind: conceptual
+statement: |
+  An act occurrence's address is its position on declared ground axes together with its layer path — the chain of composite acts it sits within — extracted at the act-site, and the occupying actor is not a component of the address.
+status: projected
+region: |
+  Synchronic: a property of one act occurrence at its act-site, so it files here per DDD-dec-09's
+  charter. Over declared axes only, inheriting the declared-space limit: the determinable space
+  is declared before determination over it (DDD-ground-05), and ground whose source coverage is
+  undeclared is a finding, not a position (DDD-ground-02). An address is blind to axes nobody
+  declared. Addresses are relative to a ruled decomposition, and re-decomposition supersedes
+  them. Every comparison between occurrences — coincidence, time order, behaviour — quantifies
+  over more than one act and persists between acts, outside this repository's charter
+  (DDD-dec-09).
+evidence:
+  - kind: observation
+    ref: "the projection repository's meta/sessions/2026-09-27-act-address/results-act-address-dry-run.md"
+    note: |
+      Dry run only, scored against a pre-registration fixed before the run (SHA-256
+      ef34e3bc14ab793800edd8c096e82adf0652ef8bc284d54d52efd20f8bf5f5eb). T1 is analytic; T2a was
+      written inside the framework and may fit by construction. It tested the instrument, not
+      the claim. No falsifier fired; one prediction was mis-stated (E-1, accepted as a
+      correction record at the landing session's GATE 1).
+falsifier: |
+  Within one ruled decomposition, an act occurrence whose governing set cannot be computed from its address, its ground readings and the decisions' applicability predicates without the verdict itself, or two occupants at one address that must declare different ground axes to act at all.
+test: |
+  The pre-registered independent case T2b: the first independent application case, pre-registered in the projection's session records, with predictions fixed before the case exists. The claim fails on either falsifier limb, or if the same occurrence lands on two addresses by mapping choice alone.
+breaks: |
+  Any diachronic claim that presupposes a stable address — time order, coincidence, behaviour — and any method that indexes acts before it places decisions and actors. DDD-ground-01 is untouched: this claim supplies the positions its applicability predicates range over.
+owner: none
+changed: v5.15 (2026-09-28, act address landing session, GATE 1 rulings — filed projected)
+notes: |
+  Ruled for test by Emil, 2026-09-27 (DDD-dec-37; act address session rulings R-2, R-5, R-6).
+  Emil originated the layer extension. The position/region construction originates in the
+  ground-axes holding note rev 18 (unratified), and anchoring by predicate in DDD-ground-01.
+
+  Falsifier limb 1 repaired at the landing session's GATE 1 (Emil, 2026-09-28). The draft read
+  "from its address and the decisions' applicability predicates without reading verdict
+  content". DDD-ground-01's region states the predicate abstraction wider than coordinate
+  geometry — temporal conditions and graph queries included — and the address keeps time out.
+  The repaired limb admits the act's ground readings, so a temporal predicate is evaluated on
+  what the act read, not on the address alone. UNVERIFIED — Emil review: that everything a
+  governing predicate needs is either in the address or in the act's ground readings, and never
+  in the verdict itself — the line between reading and verdict input.
+
+  The declared-space limit is cited to DDD-ground-05 and DDD-ground-02 (GATE 1 ruling 3). The
+  draft attributed it to DDD-ground-01, which states axis marking over declared axes and no
+  limit on undeclared space.
+
+  "Coordinate" is not used for the address: DDD-frame-01's tuple has six coordinates, and the
+  word stays reserved for them. The provisional form discussed before the ruling (decision ×
+  declared ground requirements × arrangement) was never canon, so nothing is superseded.
+
+  Relation to term:act. term:act individuates an act by verdict ("one verdict, one act, where
+  the measure exists"); this claim locates occurrences. The two are orthogonal, and the layer
+  path is consistent with core/09 §1: "acts nest as actors nest" — an inner check with its own
+  verdict individuates an inner act. UNVERIFIED — Emil review, narrowed to one case: core/09
+  treats retry economics as an expectation over the outer act, so retry attempts are separate
+  occurrences only where each attempt carries its own verdict.
+
+  Rule 1 candidate, adjudicated: kept joined (GATE 1 ruling 4). The exclusion is what makes the
+  construction an address rather than an allocation; the falsifier's two limbs test the two
+  clauses.
