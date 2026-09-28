@@ -3,14 +3,15 @@
 <!-- ddd:contract
 
 requires: [determination, ground, tolerance, arrangement, assurance, acceptance-predicate, closure, floor, judgment, act, selection, training, verdict]
-establishes: [commitment-level|commitment level, residual-discretion|residual discretion]
+establishes: [commitment-level|commitment level, residual-discretion|residual discretion, act-address|act address]
 status: draft
 -->
 
 **Read `00` through `13` first.** This document is deliberately minimal: it states the index that
 the rest of canon carries severally, and points at the claims; their files govern, and this prose
-is exposition. It establishes two terms and no more — `commitment-level` and `residual-discretion`
-(§2), both of them names for content `DDD-frame-02` already states. The tuple itself is a claim,
+is exposition. It establishes three terms and no more — `commitment-level` and `residual-discretion`
+(§2), both of them names for content `DDD-frame-02` already states, and `act-address` (§5), the
+name for content `DDD-ground-06` states. The tuple itself is a claim,
 not a term, and is not minted here. The claims are `DDD-frame-01` (the tuple), `DDD-frame-02` (commitment levels and
 residual discretion), `DDD-floor-02` (the relational floor), and the hypothesis set
 `DDD-hyp-01` through `DDD-hyp-05` (§4), summarised by `DDD-frame-07`.
@@ -131,3 +132,24 @@ reach open-predicate carriage attach assurance to claimant identity, so they exi
 identities that outlive their verdict horizons — cross-identity transfer, model version
 succession included, is partial and per-capability, and an answer-keyed instrument cannot
 evidence such carriage at all (`DDD-cost-13`).
+
+## 5. The act address
+
+The tuple indexes a determination problem, not an act. An act resolving several decisions would
+receive several tuples, so the tuple cannot say where an act occurrence sits. The address does:
+
+<!-- ddd:embed id=term:act-address -->
+> The **act address** — where an act occurrence sits: its position on declared ground axes and
+> its layer path through the composite acts that contain it, read at the act-site. The occupant
+> is not part of it, so the same address can be occupied by different actors.
+<!-- /ddd:embed -->
+
+The claim is `DDD-ground-06` (projected), filed by `DDD-dec-37`; its file governs. Decisions are
+anchored to an address by their applicability predicates (`DDD-ground-01`), over the positions
+the address supplies and the ground the act read. The layer path follows from composition: acts
+nest as actors nest (`09` §1). The address is declared-space-bound (`DDD-ground-05`): an axis
+nobody declared is not part of any address. Leaving the occupant out is what makes it an address
+rather than an allocation. Comparisons between occurrences persist between acts and fall outside
+this repository's charter (`DDD-dec-09`).
+
+**Status: draft** — filed from the act address landing session (2026-09-28).
