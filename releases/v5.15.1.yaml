@@ -1,0 +1,38 @@
+format: 1
+version: v5.15.1
+# No `commit`: cut wherever this file lands on the default branch, the normal case
+# (spec/release-format.md §2 rule 3).
+date: 2026-09-28
+basis:
+  # The claim whose notes this patch corrects to the ruled text.
+  - DDD-ground-06
+  # The decision that files it; unchanged by this patch.
+  - DDD-dec-37
+title: 'The ruled term:act flag lands in DDD-ground-06, and the glossary notes are struck'
+summary: |
+  **A sequencing correction, carried openly, on the v5.14.1 precedent.** At the act address
+  landing session's GATE 2 (Emil, 2026-09-28), ruling 3 struck the proposing agent's narrowing
+  of `DDD-ground-06`'s `term:act` flag. The general individuation/location flag was to be
+  restored, with the retry note kept as an addition and the `core/09` §1 citation for the layer
+  relation kept. The fix was pushed to the session branch as `cc0abf8` and CI passed on it. PR #24
+  was then merged at `e484ca5`, one commit earlier, so **v5.15.0 was cut without the fix** and
+  carries the struck narrowing. A cut descriptor is immutable, and corrections ship as a new
+  version. This patch is that correction.
+
+  What this release changes, and all it changes:
+
+  - `DDD-ground-06`'s notes carry the ruled text: the general `UNVERIFIED — Emil review` flag on
+    the relation to `term:act` (individuation versus location, not checked against `core/09`);
+    the `core/09` §1 citation for the layer relation; and the retry note as an addition.
+  - The two Danish glossary rows released in v5.15.0 (`handlingsadresse`, `lagsti`) keep their
+    terms. Their notes are struck and replaced by "Se core/14." (Emil's ruling at the landing
+    session's GATE 3). The notes had been drafted by the proposing agent and never ruled.
+
+  Notes are outside the fields the downstream pins hash (statement, region, `canonical_md`). So
+  the digest is unchanged, and v5.15.0's published position holds here too: this release moves
+  no pinned object. v5.15.0 itself needs no content correction beyond this. Its claim, term,
+  decision, `core/14` section and glossary rows all landed as ruled.
+
+  The miss is the second of its kind (v5.14.0 was the first): the head that was ratified is not
+  the head that merged. The downstream session records it as a successor item: a release-head
+  guard, under which the descriptor records the ratified head and CI fails if the head moves.
