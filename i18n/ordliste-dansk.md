@@ -143,8 +143,8 @@ men escape er ofte bare fravær af en beslutning, ikke forsømmelse).*
 | **indkod/verificér-delingen** | the encode/verify split | Indkod grund, du kontrollerer; verificér grund, du ikke gør. |
 | **forgiftet grund** | poisoned ground | Grund, der er til stede, men falsk: substratet, en afgørelse læser, er korrumperet. Fejl bliver *korrekte slutninger over falske præmisser*. |
 | **lukningsprincippet** | the closure principle | En aktørs eget tidligere output er ikke grund. |
-| **handlingsadresse** | act address | Hvor en handlingsforekomst sidder: dens position på erklærede grundakser og dens lagsti, aflæst på handlingsstedet. Aktøren er ikke en del af adressen. |
-| **lagsti** | layer path | Kæden af sammensatte handlinger, som en handlingsforekomst ligger inden for. En del af handlingsadressen. |
+| **handlingsadresse** | act address | Se core/14. |
+| **lagsti** | layer path | Se core/14. |
 
 ---
 
