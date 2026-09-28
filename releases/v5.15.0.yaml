@@ -1,0 +1,53 @@
+format: 1
+version: v5.15.0
+# No `commit`: cut wherever this file lands on the default branch, the normal case
+# (spec/release-format.md §2 rule 3).
+date: 2026-09-28
+basis:
+  # The claim this release files: the act address, projected, for a pre-registered test.
+  - DDD-ground-06
+  # The ruling that files it, with the landing session's GATE 1 rulings.
+  - DDD-dec-37
+  # The claims the address rests on or is cited against. None moves in this release.
+  - DDD-ground-01
+  - DDD-ground-02
+  - DDD-ground-05
+  - DDD-frame-01
+title: 'The act address — where an act occurrence sits, filed for test'
+summary: |
+  **One claim, one term, one decision**, filed from the act address session (2026-09-27) at its
+  landing session's GATE 1 rulings (Emil). The session records are the projection repository's
+  `meta/sessions/2026-09-27-act-address/` and `meta/sessions/2026-09-27-act-address-landing/`.
+
+  This is a minor and not a patch because a claim and a term are added. It is not a major:
+  every format-1 claim remains valid unchanged, no id moves, and no settled node moves.
+
+  ### What files
+
+  - `DDD-ground-06` (conceptual, **projected**): an act occurrence's address is its position on
+    declared ground axes together with its layer path through the composite acts that contain
+    it, read at the act-site. The occupying actor is not part of it. The evidence is a dry run
+    scored against a hashed pre-registration. It tested the instrument, not the claim, and no
+    falsifier fired. The independent test is the first independent application case,
+    pre-registered in the projection's session records.
+  - `term:act-address` (**draft**), established by `core/14` §5. The registry requires a core
+    document to establish a term, so the claim alone could not.
+  - `DDD-dec-37`: the ruling, including the candidates it retired and the corrections it carried.
+  - Two Danish glossary rows: `handlingsadresse` (act address) and `lagsti` (layer path).
+
+  ### Repaired before filing
+
+  The draft's falsifier computed the governing set from the address and predicates alone.
+  `DDD-ground-01`'s region admits temporal predicates, and the address keeps time out, so that
+  limb looked able to fire by construction. It now reads the address, the act's ground readings
+  and the predicates, without the verdict itself. The line between reading and verdict input is
+  flagged `UNVERIFIED — Emil review` in the claim's notes. The declared-space limit is cited to
+  `DDD-ground-05` and `DDD-ground-02`, where it is stated.
+
+  ### What fires, stated before it happens
+
+  Nothing in this release moves a pinned object. When the downstream pin next advances past it,
+  this release contributes no W5 and no W6. `DDD-ground-06` and `term:act-address` do not exist
+  before this tag. They are pinned at the advance, and they cannot be pinned before it, because
+  E12 resolves against the pinned ref. v5.14.0's published W6 on `DDD-frame-08` still stands for
+  that same advance, because the downstream pin is at v5.13.0.
