@@ -63,9 +63,14 @@ version prefix (the tag message is composed as `<version> — <title>`); `commit
 the normal case ("wherever this file lands on the default branch") and set only for a retro-cut;
 `basis` is mandatory and every ID must resolve to `core/claims/` or `core/decisions/`;
 `summary` is written in the PR, not generated afterwards; descriptors are immutable once cut —
-corrections ship as a new version. Validate with `python3 scripts/validate-releases.py
-releases/` before pushing; CI additionally requires all three canon gates green at the commit
-under release.
+corrections ship as a new version. **New descriptors declare `format: 2` and carry
+`ratified_head`** — the commit whose canon the release ratifies; CI refuses the cut unless the
+merged head is that commit plus at most the descriptor (the release-head guard, spec §4 rule 7,
+`DDD-dec-39`). So the descriptor commit comes last on the branch, and a ruled change after it
+means a new descriptor commit naming the new head. Validate with `python3
+scripts/validate-releases.py releases/` and `python3 scripts/check-release-head.py
+releases/<version>.yaml --at HEAD` before pushing; CI additionally requires all three canon gates
+green at the commit under release.
 
 ## Cite claim IDs in commit messages
 

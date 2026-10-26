@@ -1,6 +1,6 @@
 # Release format specification
 
-**Format version: 1.** This file is the versioned schema artifact for release descriptors — shape
+**Format version: 2.** This file is the versioned schema artifact for release descriptors — shape
 and validation rules only. It contains no process (how a release is proposed and reviewed is the
 way of working) and no content (see `releases/`, one file per version). As with `claim-format.md`,
 the three change independently.
@@ -60,17 +60,47 @@ prerelease: false            # optional; mark the GitHub Release as a prerelease
 ## 3. Validation
 
 A descriptor is valid iff: it declares `format`; validation runs against the declared version's
-rules (§2 for format 1); `version`, `title`, `basis`, and `summary` are present and well-formed;
-the filename agrees with `version`; and every `basis` ID resolves. `scripts/validate-releases.py`
+rules (§2 for format 1; §2 plus §4 for format 2); `version`, `title`, `basis`, and `summary` are
+present and well-formed; the filename agrees with `version`; every `basis` ID resolves; and, at
+format 2, `ratified_head` is present and looks like a SHA. `scripts/validate-releases.py`
 implements this and runs on every pull request touching `releases/`.
 
 Validity is necessary but not sufficient for a cut. CI additionally requires, at the commit under
 release, that the tag does not already exist, that the target is an ancestor of the default branch,
 and that every canon gate in `CLAUDE.md` passes — ordering and transclusion, claim and decision
-schema, and reproduction of every `core/assets/` computation. A valid descriptor whose gates fail
-is not cut, and leaves no tag behind.
+schema, and reproduction of every `core/assets/` computation — and, at format 2, that the
+release-head guard (§4, rule 7) passes. A valid descriptor whose gates fail is not cut, and
+leaves no tag behind.
 
-## 4. Why the descriptor and not the tag (note)
+## 4. Format 2 — the release-head guard (additive)
+
+**Migration note.** Format 2 adds one mandatory field, `ratified_head`, and one rule (7). Format 1
+descriptors are valid unchanged and stay at format 1; a cut descriptor is immutable (rule 6) and
+is never migrated. New descriptors declare `format: 2`.
+
+```yaml
+format: 2
+ratified_head: d4fff7e      # mandatory at format 2; the commit whose canon this release ratifies
+```
+
+7. **The merged head is the ratified head plus at most the descriptor.** `ratified_head` names
+   the commit the principal ratifies. At the commit under release, CI requires that
+   `ratified_head` is an ancestor of it, and that nothing but `releases/<version>.yaml` changed
+   between `ratified_head` and the head that merged (the merge commit's second parent, where it
+   is a merge). A release that fails either check is not cut, and leaves no tag behind. The
+   descriptor commit therefore comes last on the branch, after the canon it ratifies, and a
+   ruled change to the canon after the descriptor was written means a new descriptor commit
+   naming the new head. `scripts/check-release-head.py` implements the check, and its
+   `--hitlist` mode runs every cut descriptor against its own tag.
+
+   Why: v5.14.0 and v5.15.0 were both cut from a head that was not the head the principal had
+   ratified — the first before `DDD-dec-36` landed, the second one commit before the GATE 2 fix.
+   Nothing in the tooling could see either, because no file said which head had been ratified.
+   The descriptor is the release decision (§5), so the head it ratifies is part of its basis:
+   recording it is `DDD-agent-01`'s basis-as-query applied to the release act. Ruled under
+   `DDD-dec-39`.
+
+## 5. Why the descriptor and not the tag (note)
 
 Interpretation note, not a rule. The tag is the artifact; the descriptor is the decision that
 produced it. Filing the decision as a reviewable file, with a principal (the pull request's author
