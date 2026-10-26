@@ -1,0 +1,101 @@
+format: 1
+id: DDD-dec-39
+kind: decision
+statement: |
+  The release-head guard: a release descriptor at format 2 records the commit the principal ratified (ratified_head), and CI refuses the cut unless the head that merges is that commit plus at most the descriptor; and the two Track 1 ratification banners that outlived their ratification by seven releases (DDD-dec-26, DDD-frame-02) are struck.
+principal: Emil
+made: 2026-10-26, housekeeping session; ruled as a whole ("agreed on all execute it") on the recommendations committed at the downstream session record, meta/sessions/2026-10-26-housekeeping/prompt.md; Emil's acceptance of this pull request is the ratification act, and the descriptor it carries is the guard's first instance
+resolution: |
+  ## The class
+
+  Two releases were cut from a head that was not the head Emil had ratified. v5.14.0 was cut
+  from 8ddcd5a before DDD-dec-36 (75cc767) had landed; v5.15.0 was cut from 13128a7, whose
+  second parent e484ca5 is one commit before the GATE 2 fix cc0abf8. Both were corrected by a
+  patch release (v5.14.1, v5.15.1), both corrections were carried openly, and both were found by
+  a person reading the log, not by the tooling. The act address landing session named it a class
+  and its remedy as successor item S-1: "the descriptor records the ratified head; CI fails if
+  the head that merges is not that head".
+
+  Nothing in the tooling could have seen either miss, for one reason: no file said which head had
+  been ratified. The descriptor is the release decision (spec/release-format.md §5), and the head
+  it ratifies is part of that decision's basis. A basis that lives only in the reviewer's memory of
+  the pull request is a basis that can move silently — DDD-agent-01 applied to the release act.
+
+  ## The guard
+
+  Format 2 of the release format adds one mandatory field, ratified_head, and one rule (§4, rule
+  7). At the commit under release, CI requires:
+
+  1. ratified_head is an ancestor of the commit under release — the ratified canon is in the
+     release. This catches the class that happened: cut from BEFORE the ratified head.
+  2. Between ratified_head and the head that merged (the merge commit's second parent, where it
+     is a merge), only releases/<version>.yaml changed. This catches the mirror: unratified
+     commits merged AFTER the ratified head.
+
+  scripts/check-release-head.py implements both; release.yml runs it at the commit under release
+  as a gate before the canon gates, and validate.yml runs it at the pull request head for every
+  not-yet-cut descriptor, so the proposer learns before the merge rather than after. A descriptor
+  that fails is not cut and leaves no tag behind, the same property the other gates have.
+
+  Consequence for the working pattern: the descriptor commit comes last on the branch, after the
+  canon it ratifies; a ruled change to the canon after the descriptor was written means a new
+  descriptor commit naming the new head. The field is written by the proposer and ratified by the
+  merge — "ratified" names what the merge does to it, not a state the proposer can assert.
+
+  Format 1 descriptors are valid unchanged and unguarded; a cut descriptor is immutable (rule 6)
+  and is never migrated. The thirteen existing descriptors stay at format 1.
+
+  ## The hit-list, run before the class was chosen
+
+  Every cut descriptor was run against its own tag with --hitlist, the two recorded misses
+  reconstructed from the record and two controls supplied:
+
+      v5.13.0    ok   (assumed 1c58dd6)   control — PR #21's head
+      v5.14.0    MISS (assumed 75cc767)   ratified head is not an ancestor of 8ddcd5a
+      v5.15.0    MISS (assumed cc0abf8)   ratified head is not an ancestor of 13128a7
+      v5.15.1    ok   (assumed 7266306)   control — PR #25's head
+      nine others unguarded (format 1, no ratified_head)
+
+  Both misses fire on check 1. The mirror case was exercised separately: v5.15.1's tag against a
+  ratified head two commits behind its PR head fires check 2 on the glossary file. The guard was
+  chosen on this evidence: it catches the class that happened, the class's mirror, and passes the
+  releases that were cut correctly.
+
+  ## The banners
+
+  DDD-dec-26 (the Track 1 mint ruling) and DDD-frame-02 (the mint record in its notes) were
+  ratified by Emil's acceptance of PR #15 (merge 9e92099, tagged v5.8.0, 2026-08-18) and carried
+  [PROPOSED] banners inside every tag from v5.8.0 to v5.15.1. The Paper A session booked the
+  banners as a freight item (successor item 4); the Phase 1a session found them again, with the
+  duplicated word "One / One" in DDD-frame-02, and left both shut on Emil's ruling. They are
+  struck here, with the duplicated word, as notes-only edits: no statement, status, region or
+  canonical_md moves, so no downstream pin digest moves.
+
+  A ratification banner that outlives its ratification is not a tidiness defect. It is a false
+  statement of the object's status in the file that governs the object — the same shape as the
+  release miss, in the other direction: there the record said less than the world, here it said
+  more. Both are basis loss.
+
+  ## Not done here
+
+  - S-5, the Danish glossary rulings, is not taken: ruling Danish terms is Emil's act and no part
+    of this release needs it.
+  - The format 1 descriptors are not retro-annotated with the heads reconstructed above; a cut
+    descriptor is immutable. The reconstruction lives in this record and in the hit-list command.
+  - Decision pinning (downstream S-8) is untouched; this decision is cited downstream by id and
+    is not pinned, because the downstream checker indexes upstream claims and terms only.
+basedOn:
+  - DDD-agent-01
+  - DDD-dec-37
+  - DDD-dec-26
+notes: |
+  Filed from the downstream housekeeping session (meta/sessions/2026-10-26-housekeeping/ in
+  decision-driven-design), which carries the arrival record per DDD-dec-20; no upstream session
+  directory exists, by that convention's scope. Decision ids share one space across the two
+  repositories: 39 was the next free id on 2026-10-26 (upstream held up to 37, downstream 38);
+  the downstream session decision takes 40.
+
+  The release that carries this decision, v5.15.2, is the guard's first instance: its descriptor
+  declares format 2 and names the head of this branch at the commit before the descriptor. If
+  Emil rules a change to this pull request before merging, the descriptor is re-committed last
+  with the new head, which is the pattern rule 7 prescribes.
