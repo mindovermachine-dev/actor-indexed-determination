@@ -45,6 +45,33 @@ jobs:
             echo "no releases/ directory yet — nothing to validate"
           fi
 
+      # spec/release-format.md §4 rule 7: a proposed (not yet cut) format 2
+      # descriptor must already satisfy the guard at the pull request's head —
+      # ratified_head an ancestor of it, and only the descriptor on top. The
+      # release workflow repeats the check at the merge commit; this one tells
+      # the proposer before the merge, not after.
+      - name: Release-head guard at the pull request head
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          changed=$(git diff --name-only --diff-filter=AM "$BASE_SHA" "$HEAD_SHA" -- releases/ || true)
+          if [ -z "$changed" ]; then
+            echo "no added or modified descriptors"
+            exit 0
+          fi
+          fail=0
+          while IFS= read -r f; do
+            version=$(basename "$f" .yaml)
+            if git rev-parse --verify --quiet "refs/tags/$version" >/dev/null; then
+              continue   # immutability is the next step's business
+            fi
+            python3 scripts/check-release-head.py "$f" --at "$HEAD_SHA" || fail=1
+          done <<< "$changed"
+          exit "$fail"
+
       # spec/release-format.md rule 6: descriptors are immutable once cut.
       # A pull request that edits an already-tagged descriptor is changing a
       # release that has already happened — the tag will not move, so the file

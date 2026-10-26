@@ -6,8 +6,9 @@ Usage:
     validate-releases.py releases/v5.5.0.yaml   # a single descriptor
 
 Exit code 0 = valid; 1 = violations printed to stderr.
-Implements format version 1. New format versions extend SUPPORTED_FORMATS
-with their own rule set; descriptors validate against their declared version.
+Implements format versions 1 and 2. Format 2 adds the mandatory `ratified_head`
+(spec §4, rule 7); the guard itself runs in scripts/check-release-head.py.
+Descriptors validate against their declared version.
 """
 
 import re
@@ -19,7 +20,7 @@ try:
 except ImportError:
     sys.exit("PyYAML required: pip install pyyaml")
 
-SUPPORTED_FORMATS = {1}
+SUPPORTED_FORMATS = {1, 2}
 VERSION_RE = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
 ID_RE = re.compile(r"^DDD-[a-z]+-\d{2}$")
 SHA_RE = re.compile(r"^[0-9a-f]{7,40}$")
@@ -106,6 +107,16 @@ def check_release(r, path, canon_ids):
     summary = r.get("summary")
     if not isinstance(summary, str) or not summary.strip():
         err(where, "summary missing (release notes are written, not generated)")
+
+    # Format 2, rule 7: ratified_head is mandatory and must look like a SHA.
+    # The guard (ancestry and diff) needs git and runs in check-release-head.py.
+    head = r.get("ratified_head")
+    if fmt >= 2:
+        if not isinstance(head, str) or not SHA_RE.match(head.strip().lower()):
+            err(where, f"ratified_head missing or not a hex SHA of 7-40 chars: {head!r} "
+                       "(format 2 records the head the principal ratified)")
+    elif head is not None:
+        err(where, "ratified_head is a format 2 field; declare format: 2 to use it")
 
     for flag in ("draft", "prerelease"):
         if flag in r and not isinstance(r[flag], bool):
