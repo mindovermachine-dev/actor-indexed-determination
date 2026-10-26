@@ -1,0 +1,47 @@
+format: 2
+version: v5.15.2
+# No `commit`: cut wherever this file lands on the default branch (spec §2 rule 3).
+# ratified_head: the commit before this descriptor on the branch; the head Emil ratifies by
+# merging. CI refuses the cut unless the merged head is this commit plus this file (§4 rule 7).
+ratified_head: 0849ab8
+date: 2026-10-26
+basis:
+  # The ruling this release carries: the guard, and the banner strike.
+  - DDD-dec-39
+  # The two objects whose notes are corrected; neither moves in statement, status or region.
+  - DDD-dec-26
+  - DDD-frame-02
+  # The basis of the guard: a basis cited without a record is a basis that can move silently.
+  - DDD-agent-01
+title: 'The release-head guard, and the Track 1 ratification banners struck'
+summary: |
+  **The first release cut under the release-head guard, and the guard's own release.** Two
+  releases, v5.14.0 and v5.15.0, were cut from a head that was not the head Emil had ratified,
+  and both needed a patch release to carry the ruled text. Nothing in the tooling could see
+  either, because no file recorded which head had been ratified. This release files the remedy
+  as `DDD-dec-39` and ships it.
+
+  What this release changes:
+
+  - `spec/release-format.md` moves to **format 2**, additively: one mandatory field,
+    `ratified_head`, and one rule (§4, rule 7). The merged head must be the ratified head plus
+    at most the descriptor. Format 1 descriptors are valid unchanged; the thirteen cut ones stay
+    at format 1 and are never migrated.
+  - `scripts/check-release-head.py` implements the two checks (ancestry; descriptor-only diff)
+    and a `--hitlist` mode that runs every cut descriptor against its own tag. Run before the
+    class was chosen, with the two recorded misses reconstructed from the record, it fires on
+    both and passes the controls.
+  - `release.yml` runs the guard at the commit under release before the canon gates;
+    `validate.yml` runs it at the pull request head for every not-yet-cut descriptor, so the
+    proposer sees the miss before the merge.
+  - `DDD-dec-26` and `DDD-frame-02` lose the `[PROPOSED]` banners they carried from v5.8.0,
+    the release that ratified them, and `DDD-frame-02` loses its duplicated word. Notes only.
+
+  Pin consequence for the software projection: none. Notes are outside the three fields the
+  downstream pins hash (statement, region, `canonical_md`), so no pinned digest moves and no
+  pinned status moves. The downstream advance from v5.15.1 to this release is predicted at
+  E12 0 · E13 0 · W5 0 · W6 0 · W7 1, unchanged.
+
+  This descriptor is itself the guard's first instance: it declares format 2 and names the head
+  of its branch at the commit before it. A ruled change to the pull request after this point
+  means a new descriptor commit naming the new head, which is what rule 7 prescribes.
